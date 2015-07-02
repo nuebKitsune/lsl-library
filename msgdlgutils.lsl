@@ -1,5 +1,3 @@
-#include "recordutils.lsl"
-
 integer MessageBox(string sId, string sText, list lButtons, list lData, string sScript) {
     return MessageLinkedPrimList("service.menus", [sId, sText, llList2Json(JSON_ARRAY, lButtons), llList2Json(JSON_ARRAY, lData), sScript]);
 }

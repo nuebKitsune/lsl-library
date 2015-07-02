@@ -1,14 +1,3 @@
-/*list getRecord(list lRecords, string sColumn, integer sValue) {
-    integer i;
-    for(i = 0; i < llGetListLength(lRecords); i++) {
-        list lRecord = llJson2List(llList2String(lRecords, i));
-        if(getFieldInteger(lRecord, sColumn) == sValue)
-            return lRecord;
-            
-    }
-    
-    return [];
-}*/
 list getRecord(list lRecords, string sColumn, integer sValue) {
     list lFields = llJson2List(llList2String(lRecords, 0));
     

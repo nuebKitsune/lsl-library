@@ -31,7 +31,7 @@ integer MessageLinked(string sTo, string sString) {
 /***********************************************************************************/
 integer getLinkPrim(string name) {
     integer i;
-    for (i = 0; i < llGetNumberOfPrims(); ++i)
+    for (i = 1; i <= llGetNumberOfPrims(); ++i)
         if (llGetLinkName(i) == name) 
             return i;
             
