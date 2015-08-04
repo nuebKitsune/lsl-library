@@ -1,10 +1,10 @@
-list getRecord(list lRecords, string sColumn, integer sValue) {
+list getRecord(list lRecords, string sColumn, integer iValue) {
     list lFields = llJson2List(llList2String(lRecords, 0));
     
     integer i;
     for(i = 1; i < llGetListLength(lRecords); i++) {
         list lRecord = llJson2List(llList2String(lRecords, i));
-        if(llList2Integer(lRecord, llListFindList(lFields, [sColumn])) == sValue) {
+        if(llList2Integer(lRecord, llListFindList(lFields, [sColumn])) == iValue) {
             list lResult;
             
             integer j;
@@ -18,6 +18,33 @@ list getRecord(list lRecords, string sColumn, integer sValue) {
     
     return [];
 }
+list findRecord(list lRecords, string sColumn, string sValue) {
+    list lFields = llJson2List(llList2String(lRecords, 0));
+    
+    integer i;
+    for(i = 1; i < llGetListLength(lRecords); i++) {
+        list lRecord = llJson2List(llList2String(lRecords, i));
+        if(llList2String(lRecord, llListFindList(lFields, [sColumn])) == sValue) {
+            list lResult;
+            
+            integer j;
+            for(j = 0; j < llGetListLength(lFields); j++) 
+                lResult += [llList2String(lFields, j), llList2String(lRecord, j)];
+                
+            return lResult;
+        }
+            
+    }
+    
+    return [];
+}
+list deleteField(list lRecord, string sColumn) {
+    integer iIndex = indexOf(lRecord, sColumn);
+    if(iIndex >= 0)
+        return llDeleteSubList(lRecord, iIndex, iIndex + 1);
+    
+    return lRecord;
+} 
 list deleteRecord(list lRecords, string sColumn, integer sValue) {
     list lFields = llJson2List(llList2String(lRecords, 0));
     

@@ -70,6 +70,9 @@ integer MessageLinkedPrimScriptBroadcast(string sScript, string sString) {
     llMessageLinked(LINK_ALL_CHILDREN, iHnd, sString, sScript);
     return iHnd;
 }
+integer MessageLinkedRootScriptList(string sScript, list lList) {
+    return MessageLinkedRootScript(sScript, llList2Json(JSON_ARRAY, lList));
+}
 integer MessageLinkedRootScript(string sScript, string sString) {
     integer iHnd = Millisec(llGetTimestamp());
     llMessageLinked(LINK_ROOT, iHnd, sString, sScript);

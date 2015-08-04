@@ -1,5 +1,12 @@
 integer containsKey(list lPairs, string sKey) { return (indexOf(lPairs, sKey) % 2 == 0.0); }
-integer indexOf(list lPairs, string sKey) { return llListFindList(lPairs, [sKey]); }
+integer indexOf(list lPairs, string sKey) { 
+    integer i;
+    for(; i < llGetListLength(lPairs); i += 2)
+        if(llToLower(llList2String(lPairs, i)) == llToLower(sKey))
+            return i;
+    
+    return -1;
+}
 string getKeyValue(list lPairs, string sKey) {
     integer index = indexOf(lPairs, sKey);
     if(index >= 0)

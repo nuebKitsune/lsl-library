@@ -99,3 +99,65 @@ integer DateDiffDays(integer dt1, integer dt2) {
     integer diff = dt2 - dt1;
     return (diff / 60 / 60 / 24);
 }
+string uLongMonth(integer iMonth) {
+    if(iMonth == 1)
+        return "January";
+    if(iMonth == 2)
+        return "February";
+    if(iMonth == 3)
+        return "March";
+    if(iMonth == 4)
+        return "April";
+    if(iMonth == 5)
+        return "May";
+    if(iMonth == 6)
+        return "June";
+    if(iMonth == 7)
+        return "July";
+    if(iMonth == 8)
+        return "August";
+    if(iMonth == 9)
+        return "September"; 
+    if(iMonth == 10)
+        return "October";
+    if(iMonth == 11)
+        return "November";
+    if(iMonth == 12)
+        return "December";
+    
+    return "";
+}
+string uDaySuperScript(integer iDay) {
+    string sResult;
+    if(iDay == 1 || iDay == 21 || iDay == 31)
+        return "st";
+    if(iDay == 2 || iDay == 22)
+        return "nd";
+    if(iDay == 3 || iDay == 23)
+        return "rd";
+    
+    return "th";
+}
+string uLongDateString(integer iTimestamp) {
+    list lTimestamp = uUnix2StampLst(iTimestamp);
+    string sResult;
+    sResult += uLongMonth(llList2Integer(lTimestamp, 1)) + " ";
+    sResult += llList2String(lTimestamp, 2) + uDaySuperScript(llList2Integer(lTimestamp, 2)) + ", ";
+    sResult += llList2String(lTimestamp, 0);
+    return sResult;
+}
+string uLongTimeString(integer iTimestamp) {
+    list lTimestamp = uUnix2StampLst(iTimestamp);
+    string sResult;
+    sResult += llList2String(lTimestamp, 3) + ":";
+    sResult += llList2String(lTimestamp, 4) + ":";
+    sResult += llList2String(lTimestamp, 5);
+    return sResult;
+}
+string uLongDateTimeString(integer iTimestamp) {
+    string sResult;
+    sResult += uLongDateString(iTimestamp);
+    sResult += " ";
+    sResult += uLongTimeString(iTimestamp);
+    return sResult;
+}
